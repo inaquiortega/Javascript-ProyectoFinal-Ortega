@@ -1,0 +1,96 @@
+.txtBlack{
+    font-family: owners-text, sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    color: white;
+}
+.txtBold{
+    font-family: owners-text, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: white;
+}
+.txtBold2{
+    font-family: owners-text, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+.txtRegular{
+    font-family: owners-text, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+}
+.txtLight{
+    font-family: owners-text, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: white;
+}
+html{
+    height: 100%;
+    background: rgb(0,20,168);
+    background: linear-gradient(180deg, rgba(0,20,168,1) 0%, rgba(0,55,129,1) 0%, rgba(0,0,0,1) 38%, rgba(0,0,0,1) 58%, rgba(195,0,0,1) 70%, rgba(255,235,0,1) 87%, rgba(255,255,255,1) 100%);
+}
+body{
+    height: 100%;
+    margin: 0rem;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+.logo{
+    align-self: center;
+}
+.divLogo{
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+.txtEspacio{
+    word-spacing: 0.3em;
+    letter-spacing: 0.5em;
+    font-size: 12px;
+}
+.d1{
+    text-align: center;
+}
+.rectanguloBlanco{
+    background-color: white;
+    margin: 2rem;
+    border-radius: 10px;
+    padding: 20px;
+    width: 500px;
+}
+input[type="text"] {
+    color: #2f4e72;
+    font-family: owners-text, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    width: 402px;
+    padding: 8px;
+    border: 1px solid #666666;
+    border-radius: 3px;
+    background-color: rgb(228, 228, 228);
+  }
+  input[type="text"]::placeholder {
+    color: #666666;
+    font-style: italic;
+  }
+  input[type="text"]:focus {
+    border-color: #1d65b1;
+  }
+#listaDeTareas{
+    font-family: owners-text, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+.notificacion{
+    font-family: owners-text, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: white;
+}
