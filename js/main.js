@@ -43,11 +43,11 @@ function actualizarListaTareas() {
 }
 
 function editarTarea(index) {
-    const actualizarTexto = prompt('Editar tarea:', tareas[index].text);
+    const actualizarTexto = prompt('Editar tarea:', tareas[index].Texto);
     if (actualizarTexto !== null) {
-        tareas[index].text = actualizarTexto;
+        tareas[index].Texto = actualizarTexto;
         actualizarListaTareas();
-        localStorage.setItem('tareas', JSON.stringify(tareas));
+        sessionStorage.setItem('tareas', JSON.stringify(tareas));
     }
 }
 
