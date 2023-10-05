@@ -113,9 +113,9 @@ function fraseAleatoria() {
             }
             return respuesta.json();
         })
-        .then(quotes => {
-            const randomIndex = Math.floor(Math.random() * quotes.length);
-            const randomFrase = quotes[randomIndex];
+        .then(frases => {
+            const randomIndex = Math.floor(Math.random() * frases.length);
+            const randomFrase = frases[randomIndex];
             fraseYa.textContent = `Frase del día: ${randomFrase}`;
         })
         .catch(error => {
