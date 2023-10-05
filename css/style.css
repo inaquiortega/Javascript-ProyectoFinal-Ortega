@@ -88,6 +88,9 @@ input[type="text"] {
     font-weight: 300;
     font-style: normal;
 }
+#ingresarTarea {
+    width: 380px;
+}
 .notificacion{
     font-family: owners-text, sans-serif;
     font-weight: 300;

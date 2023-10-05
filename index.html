@@ -9,6 +9,7 @@
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://use.typekit.net/uee4pgo.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <title>TOTAL RECALL · Podemos recordarlo todo por usted</title>
 </head>
 
@@ -23,12 +24,18 @@
     <div class="rectanguloBlanco">
         <h2 class="txtBold2">Quisiera acordarme de...</h2>
         <input type="text" id="ingresarTarea" placeholder="...viajar a Marte.">
-        <button id="agregarTarea">¡Agregar!</button>
+        <button id="agregarTareas">¡Recordar!</button>
         <ul id="listaDeTareas"></ul>
+        <button id="borrarTodasLasTareas">Pensándolo bien, creo que prefiero olvidar</button>
+    </div>
+    <div>
+        <p class="txtBold2" id="fraseDelDia">Frase del día:</p>
     </div>
 
 
     <script src="./js/main.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/swal2.js"></script>
 </body>
 </html>

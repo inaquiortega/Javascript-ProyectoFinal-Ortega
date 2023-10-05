@@ -1,23 +1,32 @@
-const ingresarTareas = document.getElementById('ingresarTarea');
-const agregarTareas = document.getElementById('agregarTarea');
+const ingresarTarea = document.getElementById('ingresarTarea');
+const agregarTarea = document.getElementById('agregarTareas');
 const listaTareas = document.getElementById('listaDeTareas');
+const borrarTodasLasTareasBoton = document.getElementById('borrarTodasLasTareas');
+const fraseDia = document.getElementById('fraseDelDia');
 
-let tareas = JSON.parse(sessionStorage.getItem('tareas')) || [];
+let tareas = JSON.parse(localStorage.getItem('tareas')) || [];
 
-function agregarTarea() {
-    const txtTarea = ingresarTareas.value.trim();
+actualizarListaTareas();
+
+window.addEventListener('load', () => {
+    infoClima();
+});
+
+function agregarTareas() {
+    const txtTarea = ingresarTarea.value.trim();
     if (txtTarea) {
         const tarea = { Texto: txtTarea, Fecha: new Date() };
         tareas.push(tarea);
         actualizarListaTareas();
-        ingresarTareas.value = '';
-        sessionStorage.setItem('tareas', JSON.stringify(tareas));
+        ingresarTarea.value = '';
+        localStorage.setItem('tareas', JSON.stringify(tareas));
         mostrarNotificacion("¡Recuerdo agregado correctamente!");
     }
 }
-function mostrarNotificacion(message) {
+
+function mostrarNotificacion(mensaje) {
     Toastify({
-        text: "¡Recuerdo agregado correctamente!",
+        text: mensaje,
         className: "notificacion",
         style: {
             background: "linear-gradient(to right, #000000, #990000)"
@@ -43,26 +52,75 @@ function actualizarListaTareas() {
 }
 
 function editarTarea(index) {
-    const actualizarTexto = prompt('Editar tarea:', tareas[index].Texto);
-    if (actualizarTexto !== null) {
-        tareas[index].Texto = actualizarTexto;
-        actualizarListaTareas();
-        sessionStorage.setItem('tareas', JSON.stringify(tareas));
-    }
+    Swal.fire({
+        title: 'Editar recuerdo',
+        input: 'text',
+        inputPlaceholder: 'Nuevo recuerdo',
+        inputValue: tareas[index].Texto,
+        showCancelButton: true,
+        confirmButtonText: 'Guardar',
+        cancelButtonText: 'Cancelar',
+        inputValidator: (value) => {
+            if (!value) {
+                return 'Debes ingresar un recuerdo válido';
+            }
+        },
+        customClass: {
+            title: 'txtBold2'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            tareas[index].Texto = result.value;
+            actualizarListaTareas();
+            localStorage.setItem('tareas', JSON.stringify(tareas));
+            mostrarNotificacion("¡Tarea editada correctamente!");
+        }
+    });
 }
 
 function eliminarTarea(index) {
     tareas.splice(index, 1);
     actualizarListaTareas();
+    localStorage.setItem('tareas', JSON.stringify(tareas));
 }
 
-agregarTareas.addEventListener('click', agregarTarea);
+function borrarTodasLasTareas() {
+    tareas = [];
+    actualizarListaTareas();
+    localStorage.removeItem('tareas');
+}
+
+agregarTarea.addEventListener('click', agregarTareas);
 ingresarTarea.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
-        agregarTarea();
+        agregarTareas();
     }
 });
 
 window.addEventListener('beforeunload', function () {
-    sessionStorage.clear();
+    localStorage.setItem('tareas', JSON.stringify(tareas));
 });
+
+borrarTodasLasTareasBoton.addEventListener('click', borrarTodasLasTareas);
+
+const fraseYa = document.getElementById('fraseDelDia');
+
+function fraseAleatoria() {
+    return fetch('https://my.api.mockaroo.com/frasesTotalRecall.json?key=8c27d090')
+        .then(respuesta => {
+            if (!respuesta.ok) {
+                throw new Error('Error');
+            }
+            return respuesta.json();
+        })
+        .then(quotes => {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const randomFrase = quotes[randomIndex];
+            fraseYa.textContent = `Frase del día: ${randomFrase}`;
+        })
+        .catch(error => {
+            console.error('Error', error);
+        });
+}
+
+fraseAleatoria();
